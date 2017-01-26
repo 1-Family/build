@@ -24,6 +24,7 @@
 #     DEFAULT_APP_TARGET_SDK
 #     BUILD_ID
 #     BUILD_NUMBER
+#     HELIXOS_VERSION
 #
 
 # Look for an optional file containing overrides of the defaults,
@@ -34,6 +35,16 @@
 INTERNAL_BUILD_ID_MAKEFILE := $(wildcard $(BUILD_SYSTEM)/build_id.mk)
 ifneq "" "$(INTERNAL_BUILD_ID_MAKEFILE)"
   include $(INTERNAL_BUILD_ID_MAKEFILE)
+endif
+
+INTERNAL_BUILD_NUMBER_MAKEFILE := $(wildcard $(BUILD_SYSTEM)/build_number.mk)
+ifneq "" "$(INTERNAL_BUILD_NUMBER_MAKEFILE)"
+  include $(INTERNAL_BUILD_NUMBER_MAKEFILE)
+endif
+
+INTERNAL_HELIXOS_VERSION_MAKEFILE := $(wildcard $(BUILD_SYSTEM)/helixos_version.mk)
+ifneq "" "$(INTERNAL_HELIXOS_VERSION_MAKEFILE)"
+  include $(INTERNAL_HELIXOS_VERSION_MAKEFILE)
 endif
 
 ifeq "" "$(PLATFORM_VERSION)"
@@ -99,5 +110,10 @@ ifeq "" "$(BUILD_NUMBER)"
   # If no BUILD_NUMBER is set, create a useful "I am an engineering build
   # from this date/time" value.  Make it start with a non-digit so that
   # anyone trying to parse it as an integer will probably get "0".
-  BUILD_NUMBER := eng.$(USER).$(shell date +%Y%m%d.%H%M%S)
+  BUILD_NUMBER := 1
 endif
+
+ifeq "" "$(HELIXOS_VERSION)"
+  HELIXOS_VERSION := 1.0
+endif
+

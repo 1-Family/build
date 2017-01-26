@@ -54,7 +54,14 @@ PRODUCT_PACKAGES += \
     ip6tables \
     iptables \
     keystore \
+    keystore_cli \
     keystore.default \
+    libkeyutils \
+    key-util \
+    ecryptfsd \
+    mount.ecryptfs \
+    libecryptfs \
+    libecryptfs_key_mod_openssl \
     libOpenMAXAL \
     libOpenSLES \
     libdownmix \
